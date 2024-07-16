@@ -14,8 +14,6 @@ const SignupForm = (props) => {
     passwordConf: '',
   });
 
-  const [photo, setPhoto] = useState('')
-
   const updateMessage = (msg) => {
     setMessage(msg);
   };
@@ -29,14 +27,8 @@ const SignupForm = (props) => {
     updateMessage('');
     console.log(formData); // this line will print the form data to the console
 
-    // We need to create FormData, because we have to send a multipart/form-data request 
-    const dataToSendToServer = new FormData()
-    dataToSendToServer.append('photo', photo)
-    dataToSendToServer.append('username', formData.username)
-    dataToSendToServer.append('password', formData.password)
-
 	try {
-		const user = await authService.signup(dataToSendToServer)
+		const user = await authService.signup(formData)
 		console.log(user)
 		props.setUser(user)
 		navigate('/')
@@ -53,10 +45,6 @@ const SignupForm = (props) => {
     return !(username && password && password === passwordConf);
   };
 
-  function handleFileInput(e){
-    console.log(e.target.files)
-    setPhoto(e.target.files[0])
-  }
 
   return (
     <main>
@@ -92,10 +80,6 @@ const SignupForm = (props) => {
             name="passwordConf"
             onChange={handleChange}
           />
-        </div>
-        <div>
-          <label htmlFor="profile-pic">Profile Picture:</label>
-          <input type="file" onChange={handleFileInput} />
         </div>
         <div>
           <button disabled={isFormInvalid()}>Sign Up</button>

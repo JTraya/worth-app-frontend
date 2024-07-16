@@ -7,22 +7,22 @@ export default function ProfilePage(){
 	const { userId } = useParams()
 	const [photo, setPhoto] = useState('')
 
-	useEffect(() => {
-		console.log(userId)
-		console.log('useeffect is running')
+	// useEffect(() => {
+	// 	console.log(userId)
+	// 	console.log('useeffect is running')
 
-		async function getProfile(){
-			try {
-				const userProfile = await profileService.getProfile(userId)
-				console.log(userProfile)
-			} catch(err){
-				console.log(err)
-			}
-		}
+	// 	async function getProfile(){
+	// 		try {
+	// 			const userProfile = await profileService.getProfile(userId)
+	// 			console.log(userProfile)
+	// 		} catch(err){
+	// 			console.log(err)
+	// 		}
+	// 	}
 
-		getProfile()
+	// 	getProfile()
 
-	}, [])
+	// }, [])
 
 
 	function handleFileInput(e){

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const NavBar = ({ user, handleLogout}) => {
 	return (
-	  <>
+	<>
 		{user ? (
 			<nav>
 				<ul>
@@ -23,7 +23,7 @@ const NavBar = ({ user, handleLogout}) => {
 
 
 		
-	  </>
+	</>
 	)
   }
   export default NavBar

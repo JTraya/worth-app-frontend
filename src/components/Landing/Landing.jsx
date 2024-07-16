@@ -2,13 +2,12 @@
 
 const Landing = () => {
 	return (
-	  <main>
-		<h1>Hello, you are on the landing page for visitors.</h1>
+	<main>
+		<h1>Welcome to Worth!</h1>
 		<h3>
-		  If you sign up for a new account, you will have the ability to sign in
-		  and see your super secret dashboard.
+		A space to share if game prices are actually Worth! Please login or signup to begin sharing.
 		</h3>
-	  </main>
+	</main>
 	);
   };
   

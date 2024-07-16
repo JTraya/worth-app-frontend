@@ -5,16 +5,11 @@ async function signup(formData){
 	try {
 		const response = await fetch(`${BACKEND_URL}/users/signup`, {
 			method: 'POST',
-			// we need to let the server know we are sending json
-			// headers: {
-			// 	'Content-Type': 'application/json'
-			// },
-			// If we are sending a multipart/form-data request (aka sending a file, we need to send FormData, check the 
-			// handleSubmit in the signup page and json, and we don't have to set the content-type in the headers, 
-			// because the browser will automatically apply them for us!
+			headers: {
+				'Content-Type': 'application/json'
+			},
 
-
-			body: formData
+			body: JSON.stringify(formData)
 		})
 
 		const data = await response.json()
@@ -48,6 +43,7 @@ async function signup(formData){
 
 
 async function signin(userCredentials){
+	console.log(userCredentials)
 	try {
 		const response = await fetch(`${BACKEND_URL}/users/login`, {
 			method: 'POST',
@@ -56,8 +52,9 @@ async function signin(userCredentials){
 			},
 			body: JSON.stringify(userCredentials)	
 		})
-
+		console.log(response)
 		const data = await response.json()
+		console.log(data)
 		if(data.error){
 			throw new Error(data.error)
 		}
@@ -73,8 +70,8 @@ async function signin(userCredentials){
 		}
 		
 	} catch(err){
-		 console.log(err)
-		 throw err
+		console.log(err)
+		throw err
 	}
 }
 
@@ -82,6 +79,7 @@ function getUser(){
 	const token = localStorage.getItem('token')
 	if(!token) return null
 	const user = JSON.parse(atob(token.split('.')[1]))
+	console.log(typeof user)
 	return user.user
 }
 
